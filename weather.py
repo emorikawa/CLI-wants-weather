@@ -6,11 +6,14 @@
 #
 # Gets the weather and returns a string
 # Why? Because I want a cute weather indicator in my prompt
-# Requres: python-argparse
+# Requires: python-argparse, Wunderground API Key
+# API Key can be obtained for free here: http://www.wunderground.com/weather/api/
 
 import argparse 
 import urllib2
 import json
+
+API_KEY ="API_KEY_HERE"
 
 def main():
     parser = argparse.ArgumentParser(description='Get the weather and return a string')
@@ -29,7 +32,7 @@ def main():
      
     args = parser.parse_args()
 
-    BASEURL = "http://api.wunderground.com/api/6c5f9a17518f02c6/"
+    BASEURL = "http://api.wunderground.com/api/%s/" % (API_KEY)
     WURL = BASEURL + 'conditions/q/'
     geourl = BASEURL + "geolookup/q/%s.json" % (args.zipcode)
 
@@ -89,10 +92,10 @@ def main():
                     'Heavy Ice Pellets': "☃",
                     'Light Ice Pellet Showers': "☃",
                     'Heavy Ice Pellet Showers': "☃",
-		    'Light Freezing Drizzle': "☂ *",
-		    'Heavy Freezing Drizzle': "☂ *",
-		    'Light Freezing Rain': "☂ *",
-		    'Heavy Freezing Rain': "☂ *",
+        		    'Light Freezing Drizzle': "☂ *",
+	        	    'Heavy Freezing Drizzle': "☂ *",
+		            'Light Freezing Rain': "☂ *",
+		            'Heavy Freezing Rain': "☂ *",
     	            'Light Thunderstorms and Ice Pellets': "*⚡",
     	            'Heavy Thunderstorms and Ice Pellets': "*⚡",
                     'Light Hail': "*",
@@ -133,7 +136,7 @@ def main():
                     'Heavy Blowing Sand': "SS",
                     'Light Low Drifting Sand': "SS",
                     'Heavy Low Drifting Sand': "SS",
-    		    'Clear': "☉",
+    		        'Clear': "☉",
                     'Sunny': "☼",
                     'Mostly Sunny': "☼☁",
                     'Partly Cloudy': "☁ ☼",
